@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { fetchCategoryProducts } from "../api";
 import { useStorage } from "../contexts/StorageContext";
-import { Link } from "react-router-dom"; // ✅ Link qo‘shildi
+import { Link } from "react-router-dom";
 
 const TABS = [
   { id: 1, label: "Phones", category: "smartphones" },
@@ -33,7 +33,6 @@ export default function ProductTabs() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      {/* Tabs */}
       <div className="flex space-x-6 border-b mb-6">
         {TABS.map((tab) => (
           <button
@@ -49,19 +48,14 @@ export default function ProductTabs() {
           </button>
         ))}
       </div>
-
-      {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <Link to={`/product/${product.id}`} key={product.id}>
-            <div
-              className="relative w-[268px] h-[432px] rounded-[9px] shadow-sm hover:shadow-md transition duration-300 bg-[#F6F6F6] cursor-pointer"
-            >
-              {/* Like Button */}
+            <div className="relative w-[268px] h-[432px] rounded-[9px] shadow-sm hover:shadow-md transition duration-300 bg-[#F6F6F6] cursor-pointer">
               <button
                 className="absolute top-3 right-3 z-10"
                 onClick={(e) => {
-                  e.preventDefault(); // ❌ Linkni to‘xtatish
+                  e.preventDefault();
                   toggleWishlist(product);
                 }}
               >
@@ -74,7 +68,6 @@ export default function ProductTabs() {
                 />
               </button>
 
-              {/* Product Info */}
               <img
                 src={product.thumbnail}
                 alt={product.title}
@@ -90,7 +83,7 @@ export default function ProductTabs() {
 
               <button
                 onClick={(e) => {
-                  e.preventDefault(); // ❌ Linkni to‘xtatish
+                  e.preventDefault();
                   addToCart(product);
                 }}
                 className="w-[188px] h-[48px] bg-black text-white rounded-[8px] flex justify-center items-center m-auto mt-7"

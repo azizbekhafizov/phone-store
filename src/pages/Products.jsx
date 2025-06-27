@@ -43,12 +43,14 @@ export default function SmartphoneCatalog() {
 
   const totalPages = Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE);
   const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
-  const currentProducts = filteredProducts.slice(start, start + PRODUCTS_PER_PAGE);
+  const currentProducts = filteredProducts.slice(
+    start,
+    start + PRODUCTS_PER_PAGE
+  );
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
       <div className="flex gap-10">
-        {/* Brand Filter */}
         <aside className="w-1/4 hidden md:block">
           <div className="border-b pb-4 mb-4">
             <div
@@ -86,7 +88,10 @@ export default function SmartphoneCatalog() {
                         }}
                       />
                       <span className="flex justify-between w-full">
-                        All <span className="text-gray-400">({products.length})</span>
+                        All{" "}
+                        <span className="text-gray-400">
+                          ({products.length})
+                        </span>
                       </span>
                     </label>
                   </li>
@@ -108,7 +113,9 @@ export default function SmartphoneCatalog() {
                           />
                           <span className="flex justify-between w-full">
                             {brand.name}
-                            <span className="text-gray-400">({brand.count})</span>
+                            <span className="text-gray-400">
+                              ({brand.count})
+                            </span>
                           </span>
                         </label>
                       </li>
@@ -119,7 +126,6 @@ export default function SmartphoneCatalog() {
           </div>
         </aside>
 
-        {/* Product List */}
         <section className="w-full md:w-3/4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {currentProducts.map((product) => (
@@ -152,11 +158,14 @@ export default function SmartphoneCatalog() {
                     <h3 className="text-[17px] font-medium leading-tight">
                       {product.title}
                     </h3>
-                    <p className="text-gray-500 text-sm mt-1">{product.brand}</p>
-                    <p className="text-[22px] font-bold mt-3">${product.price}</p>
+                    <p className="text-gray-500 text-sm mt-1">
+                      {product.brand}
+                    </p>
+                    <p className="text-[22px] font-bold mt-3">
+                      ${product.price}
+                    </p>
                   </div>
 
-                  {/* Add to Cart */}
                   <button
                     onClick={(e) => {
                       e.preventDefault();
@@ -171,7 +180,6 @@ export default function SmartphoneCatalog() {
             ))}
           </div>
 
-          {/* Pagination */}
           <div className="flex justify-center mt-10 space-x-2">
             {Array.from({ length: totalPages }).map((_, index) => (
               <button

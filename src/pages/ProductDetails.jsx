@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // ✅
+import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Heart, ShoppingCart } from "lucide-react";
 import { useStorage } from "../contexts/StorageContext";
 
 export default function ProductDetails() {
   const { id } = useParams();
-  const navigate = useNavigate(); // ✅
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const { wishlist, toggleWishlist, addToCart } = useStorage();
 
@@ -43,9 +43,7 @@ export default function ProductDetails() {
             />
           ))}
         </div>
-        
 
-        {/* Main section */}
         <div className="md:col-span-4 space-y-6">
           <div className="flex justify-center md:justify-start">
             <img

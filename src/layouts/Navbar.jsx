@@ -1,5 +1,5 @@
-import React from "react";
-import { FaSearch, FaHeart, FaShoppingCart } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaSearch, FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useSearch } from "../contexts/SearchContext";
@@ -9,42 +9,35 @@ export default function Navbar() {
   const { t, i18n } = useTranslation();
   const { setSearchTerm } = useSearch();
   const { wishlist, cart } = useStorage();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLanguageChange = (e) => {
     i18n.changeLanguage(e.target.value);
   };
 
   return (
-    <header className="w-full shadow-md bg-white text-black">
-      <div className="h-[88px] container mx-auto flex items-center justify-between px-4">
-        <Link to="/">
-          <div className="text-2xl font-bold tracking-wide text-black">
-            cyber
-          </div>
+    <header className="w-full shadow-md bg-white text-black fixed top-0 left-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+        <Link to="/" className="text-2xl font-bold tracking-wide text-black">
+          cyber
         </Link>
 
-        <div className="flex items-center border border-gray-300 gap-4 px-4 py-1 rounded-2xl bg-white">
+        <div className="hidden lg:flex items-center border border-gray-300 gap-4 px-4 py-1 rounded-2xl bg-white mx-6 flex-grow max-w-xl">
           <FaSearch className="text-gray-500" />
           <input
             type="text"
             placeholder={t("search") || "Search"}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="bg-transparent outline-none w-[300px] h-[40px] placeholder-gray-500 text-black"
+            className="bg-transparent outline-none w-full h-[40px] placeholder-gray-500 text-black"
           />
         </div>
-        {/* Nav links */}
-        <nav className="flex space-x-6 text-base font-medium">
-          <Link to="/" className="hover:text-blue-600">
-            {t("home")}
-          </Link>
-          <Link to="/shop" className="hover:text-blue-600">
-            {t("shop")}
-          </Link>
-          <Link to="/contact" className="hover:text-blue-600">
-            {t("contact")}
-          </Link>
+        <nav className="hidden lg:flex items-center gap-6 text-base font-medium">
+          <Link to="/" className="">{t("home")}</Link>
+          <Link to="/shop" className="">{t("shop")}</Link>
+          <Link to="/contact" className="">{t("contact")}</Link>
         </nav>
-        <div className="flex items-center space-x-4">
+
+        <div className="flex items-center space-x-4 ml-4">
           <Link to="/wishlist" className="relative">
             <FaHeart className="text-xl" />
             {wishlist.length > 0 && (
@@ -72,8 +65,38 @@ export default function Navbar() {
             <option value="uz">UZ</option>
             <option value="ru">RU</option>
           </select>
+
+          <button className="lg:hidden ml-2" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+          </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <div className="lg:hidden bg-white border-t border-gray-200">
+          <div className="px-4 py-4 space-y-3">
+            <div className="flex items-center border border-gray-300 px-3 py-2 rounded-md">
+              <FaSearch className="text-gray-500 mr-2" />
+              <input
+                type="text"
+                placeholder={t("search") || "Search"}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full bg-transparent outline-none placeholder-gray-500 text-black"
+              />
+            </div>
+
+            <Link to="/" onClick={() => setMenuOpen(false)} className="block text-base ">
+              {t("home")}
+            </Link>
+            <Link to="/shop" onClick={() => setMenuOpen(false)} className="block text-base ">
+              {t("shop")}
+            </Link>
+            <Link to="/contact" onClick={() => setMenuOpen(false)} className="block text-base ">
+              {t("contact")}
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

@@ -11,7 +11,7 @@ i18n
   .init({
     resources: {
       uz: { translation: uz },
-      ru: { translation: ru }
+      ru: { translation: ru },
       // ❌ en qo‘shilmaydi
     },
     fallbackLng: false, // ❗ fallback yo‘q — inglizcha matnlarni o‘zi yozilgan bo‘ladi

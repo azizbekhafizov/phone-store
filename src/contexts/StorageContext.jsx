@@ -13,7 +13,6 @@ export const StorageProvider = ({ children }) => {
     return stored ? JSON.parse(stored) : [];
   });
 
-  // 🔁 Saqlash localStorage'ga
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
@@ -22,7 +21,6 @@ export const StorageProvider = ({ children }) => {
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
   }, [wishlist]);
 
-  // ❤️ Toggle wishlist
   const toggleWishlist = (product) => {
     setWishlist((prev) =>
       prev.some((p) => p.id === product.id)
@@ -31,7 +29,6 @@ export const StorageProvider = ({ children }) => {
     );
   };
 
-  // 🛒 Add to cart
   const addToCart = (product) => {
     setCart((prev) => {
       const exists = prev.find((p) => p.id === product.id);

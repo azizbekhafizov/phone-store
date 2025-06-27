@@ -5,7 +5,6 @@ import React from "react";
 export default function PromoCards() {
   return (
     <div className="flex flex-wrap justify-center gap-4">
-      {/* Card 1 */}
       <div
         className="flex flex-col p-6 w-full sm:w-[360px] h-auto sm:h-[640px]"
         style={{ backgroundColor: "#FFFFFF" }}
@@ -24,16 +23,11 @@ export default function PromoCards() {
           iPad combines a magnificent 10.2-inch Retina display, incredible
           performance, multitasking and ease of use.
         </p>
-<button
-  className="block text-center w-full sm:w-[190px] h-[55px] border-2 rounded-[8px] transition border-black text-black hover:bg-black hover:text-white leading-[55px]"
->
-  Shop Now
-</button>
-
-
+        <button className="block text-center w-full sm:w-[190px] h-[55px] border-2 rounded-[8px] transition border-black text-black hover:bg-black hover:text-white leading-[55px]">
+          Shop Now
+        </button>
       </div>
 
-      {/* Card 2 */}
       <div
         className="flex flex-col p-6 w-full sm:w-[360px] h-auto sm:h-[640px]"
         style={{ backgroundColor: "#F9F9F9" }}
@@ -52,14 +46,11 @@ export default function PromoCards() {
           iPad combines a magnificent 10.2-inch Retina display, incredible
           performance, multitasking and ease of use.
         </p>
-<button
-  className="block text-center w-full sm:w-[190px] h-[55px] border-2 rounded-[8px] transition border-black text-black hover:bg-black hover:text-white leading-[55px]"
->
-  Shop Now
-</button>
+        <button className="block text-center w-full sm:w-[190px] h-[55px] border-2 rounded-[8px] transition border-black text-black hover:bg-black hover:text-white leading-[55px]">
+          Shop Now
+        </button>
       </div>
 
-      {/* Card 3 */}
       <div
         className="flex flex-col p-6 w-full sm:w-[360px] h-auto sm:h-[640px]"
         style={{ backgroundColor: "#EAEAEA" }}
@@ -78,14 +69,11 @@ export default function PromoCards() {
           iPad combines a magnificent 10.2-inch Retina display, incredible
           performance, multitasking and ease of use.
         </p>
-<button
-  className="block text-center w-full sm:w-[190px] h-[55px] border-2 rounded-[8px] transition border-black text-black hover:bg-black hover:text-white leading-[55px]"
->
-  Shop Now
-</button>
+        <button className="block text-center w-full sm:w-[190px] h-[55px] border-2 rounded-[8px] transition border-black text-black hover:bg-black hover:text-white leading-[55px]">
+          Shop Now
+        </button>
       </div>
 
-      {/* Card 4 */}
       <div
         className="flex flex-col p-6 w-full sm:w-[360px] h-auto sm:h-[640px]"
         style={{ backgroundColor: "#2C2C2C" }}
@@ -104,12 +92,9 @@ export default function PromoCards() {
           iPad combines a magnificent 10.2-inch Retina display, incredible
           performance, multitasking and ease of use.
         </p>
-<button
-  className="block text-center w-full sm:w-[190px] h-[55px] border-2 rounded-[8px] transition border-white text-white hover:bg-white hover:text-black leading-[55px]"
->
-  Shop Now
-</button>
-
+        <button className="block text-center w-full sm:w-[190px] h-[55px] border-2 rounded-[8px] transition border-white text-white hover:bg-white hover:text-black leading-[55px]">
+          Shop Now
+        </button>
       </div>
     </div>
   );

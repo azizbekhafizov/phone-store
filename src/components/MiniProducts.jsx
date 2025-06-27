@@ -26,7 +26,6 @@ const MiniProducts = () => {
             to={`/product/${product.id}`}
             className="relative w-full h-[432px] rounded-[9px] shadow-sm hover:shadow-md transition duration-300 bg-[#F6F6F6] flex flex-col justify-between p-4"
           >
-            {/* Like Button */}
             <button
               className="absolute top-3 right-3 z-10"
               onClick={(e) => {
@@ -43,14 +42,12 @@ const MiniProducts = () => {
               />
             </button>
 
-            {/* Product Image */}
             <img
               src={product.thumbnail}
               alt={product.title}
               className="w-full h-[220px] object-cover rounded-lg mt-2"
             />
 
-            {/* Text Info */}
             <div className="text-center mt-4">
               <h3 className="text-[18px] leading-[24px] font-medium">
                 {product.title}
@@ -61,7 +58,6 @@ const MiniProducts = () => {
               </p>
             </div>
 
-            {/* Buy Button */}
             <button
               onClick={(e) => {
                 e.preventDefault();

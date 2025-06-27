@@ -15,7 +15,6 @@ export default function Cart() {
   const estimatedTax = 50;
   const shipping = 29;
 
-  // 🧮 Subtotal hisoblash
   useEffect(() => {
     const total = cart.reduce(
       (sum, item) => sum + item.price * (item.quantity || 1),
@@ -24,7 +23,6 @@ export default function Cart() {
     setSubtotal(total);
   }, [cart]);
 
-  // 🎟 Promo code hisoblash
   useEffect(() => {
     if (promoCode.toLowerCase() === "azizbek") {
       setDiscount(subtotal * 0.3);
@@ -61,7 +59,6 @@ export default function Cart() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
-      {/* Cart Items */}
       <div className="md:col-span-2">
         <h2 className="text-2xl font-semibold mb-6">Shopping Cart</h2>
         <div className="space-y-6">
@@ -80,7 +77,6 @@ export default function Cart() {
                 <p className="text-gray-400 text-sm">#{item.id}</p>
               </div>
 
-              {/* Quantity Controls */}
               <div className="flex items-center border rounded-md overflow-hidden">
                 <button
                   onClick={() => updateQuantity(item.id, -1)}
@@ -110,7 +106,6 @@ export default function Cart() {
         </div>
       </div>
 
-      {/* Order Summary */}
       <div className="border p-6 rounded-lg shadow-sm">
         <h3 className="text-xl font-semibold mb-4">Order Summary</h3>
 

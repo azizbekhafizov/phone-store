@@ -39,7 +39,9 @@ export default function CategorySlider() {
   return (
     <div className="w-full px-4 md:px-10 py-8">
       <div className="flex items-center justify-between px-32  max-w-6xl mx-auto mb-6">
-        <h2 className="text-xl md:text-2xl font-semibold">Browse By Category</h2>
+        <h2 className="text-xl md:text-2xl font-semibold">
+          Browse By Category
+        </h2>
         <div className="flex items-center gap-2">
           <button
             onClick={handlePrev}
