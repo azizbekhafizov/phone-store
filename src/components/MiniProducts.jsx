@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
-import { useStorage } from "../contexts/StorageContext"; // ☝️ context import
+import { useStorage } from "../contexts/StorageContext";
+import { Link } from "react-router-dom";
 
 const MiniProducts = () => {
   const [products, setProducts] = useState([]);
-
   const { wishlist, toggleWishlist, addToCart } = useStorage();
 
   useEffect(() => {
@@ -21,14 +21,18 @@ const MiniProducts = () => {
       <h2 className="text-2xl font-semibold mb-6">Discounts up to -50%</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {products.map((product) => (
-          <div
+          <Link
             key={product.id}
+            to={`/product/${product.id}`}
             className="relative w-full h-[432px] rounded-[9px] shadow-sm hover:shadow-md transition duration-300 bg-[#F6F6F6] flex flex-col justify-between p-4"
           >
             {/* Like Button */}
             <button
-              className="absolute top-3 right-3"
-              onClick={() => toggleWishlist(product)}
+              className="absolute top-3 right-3 z-10"
+              onClick={(e) => {
+                e.preventDefault();
+                toggleWishlist(product);
+              }}
             >
               <Heart
                 className={`w-6 h-6 ${
@@ -59,12 +63,15 @@ const MiniProducts = () => {
 
             {/* Buy Button */}
             <button
-              onClick={() => addToCart(product)}
+              onClick={(e) => {
+                e.preventDefault();
+                addToCart(product);
+              }}
               className="mt-6 w-full h-[48px] bg-black text-white rounded-[8px] hover:bg-gray-800 transition"
             >
               Buy Now
             </button>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

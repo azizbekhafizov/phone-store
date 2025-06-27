@@ -22,7 +22,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Products />} />
-            <Route path="/products/:id" element={<ProductDetails />} />
+<Route path="/product/:id" element={<ProductDetails />} />
+<Route path="/products/:id" element={<ProductDetails />} />
+
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/account" element={<Account />} />

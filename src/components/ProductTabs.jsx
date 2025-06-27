@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { fetchCategoryProducts } from "../api";
 import { useStorage } from "../contexts/StorageContext";
+import { Link } from "react-router-dom"; // ✅ Link qo‘shildi
 
 const TABS = [
   { id: 1, label: "Phones", category: "smartphones" },
@@ -52,45 +53,52 @@ export default function ProductTabs() {
       {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
-          <div
-            key={product.id}
-            className="relative w-[268px] h-[432px] rounded-[9px] shadow-sm hover:shadow-md transition duration-300 bg-[#F6F6F6]"
-          >
-            {/* Like Button */}
-            <button
-              className="absolute top-3 right-3"
-              onClick={() => toggleWishlist(product)}
+          <Link to={`/product/${product.id}`} key={product.id}>
+            <div
+              className="relative w-[268px] h-[432px] rounded-[9px] shadow-sm hover:shadow-md transition duration-300 bg-[#F6F6F6] cursor-pointer"
             >
-              <Heart
-                className={`w-6 h-6 ${
-                  isInWishlist(product.id)
-                    ? "text-red-500 fill-red-500"
-                    : "text-gray-400"
-                }`}
+              {/* Like Button */}
+              <button
+                className="absolute top-3 right-3 z-10"
+                onClick={(e) => {
+                  e.preventDefault(); // ❌ Linkni to‘xtatish
+                  toggleWishlist(product);
+                }}
+              >
+                <Heart
+                  className={`w-6 h-6 ${
+                    isInWishlist(product.id)
+                      ? "text-red-500 fill-red-500"
+                      : "text-gray-400"
+                  }`}
+                />
+              </button>
+
+              {/* Product Info */}
+              <img
+                src={product.thumbnail}
+                alt={product.title}
+                className="w-[220px] h-[220px] mx-auto mt-12"
               />
-            </button>
 
-            {/* Product Info */}
-            <img
-              src={product.thumbnail}
-              alt={product.title}
-              className="w-[220px] h-[220px] mx-auto mt-12"
-            />
+              <h3 className="text-[18px] leading-[24px] text-center font-medium mt-2">
+                {product.title}
+              </h3>
+              <p className="text-[24px] leading-[24px] text-center mt-4 font-semibold">
+                ${product.price}
+              </p>
 
-            <h3 className="text-[18px] leading-[24px] text-center font-medium mt-2">
-              {product.title}
-            </h3>
-            <p className="text-[24px] leading-[24px] text-center mt-4 font-semibold">
-              ${product.price}
-            </p>
-
-            <button
-              onClick={() => addToCart(product)}
-              className="w-[188px] h-[48px] bg-black text-white rounded-[8px] flex justify-center items-center m-auto mt-7"
-            >
-              Buy Now
-            </button>
-          </div>
+              <button
+                onClick={(e) => {
+                  e.preventDefault(); // ❌ Linkni to‘xtatish
+                  addToCart(product);
+                }}
+                className="w-[188px] h-[48px] bg-black text-white rounded-[8px] flex justify-center items-center m-auto mt-7"
+              >
+                Buy Now
+              </button>
+            </div>
+          </Link>
         ))}
       </div>
     </div>
