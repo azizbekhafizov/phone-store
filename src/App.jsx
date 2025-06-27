@@ -13,25 +13,21 @@ function App() {
     <BrowserRouter>
       <div className="min-h-screen flex flex-col justify-between">
         <Navbar />
-
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Products />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/product/:id" element={<ProductDetails />} /> {/* ✅ to‘g‘ri */}
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/cart" element={<Cart />} />
             <Route
               path="*"
               element={
-                <h1 className="text-center py-10 text-2xl">
-                  404 - Page Not Found
-                </h1>
+                <h1 className="text-center py-10 text-2xl">404 - Page Not Found</h1>
               }
             />
           </Routes>
         </main>
-
         <Footer />
       </div>
     </BrowserRouter>

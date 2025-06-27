@@ -129,7 +129,10 @@ export default function SmartphoneCatalog() {
         <section className="w-full md:w-3/4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {currentProducts.map((product) => (
-              <Link to={`/products/${product.id}`} key={product.id}>
+                     <Link
+            to={`/product/${product.id}`}
+            className="inline-block mt-3 text-sm text-blue-600 underline hover:text-blue-800"
+          >
                 <div className="relative w-full h-[450px] rounded-[9px] shadow-sm hover:shadow-md transition bg-[#F6F6F6] flex flex-col justify-between p-4 cursor-pointer">
                   {/* Wishlist */}
                   <button
