@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Heart, ChevronDown, ChevronUp } from "lucide-react";
 import { useSearch } from "../contexts/SearchContext";
 import { useStorage } from "../contexts/StorageContext";
+import { Link } from "react-router-dom";
 
 const PRODUCTS_PER_PAGE = 9;
 
@@ -85,10 +86,7 @@ export default function SmartphoneCatalog() {
                         }}
                       />
                       <span className="flex justify-between w-full">
-                        All{" "}
-                        <span className="text-gray-400">
-                          ({products.length})
-                        </span>
+                        All <span className="text-gray-400">({products.length})</span>
                       </span>
                     </label>
                   </li>
@@ -110,9 +108,7 @@ export default function SmartphoneCatalog() {
                           />
                           <span className="flex justify-between w-full">
                             {brand.name}
-                            <span className="text-gray-400">
-                              ({brand.count})
-                            </span>
+                            <span className="text-gray-400">({brand.count})</span>
                           </span>
                         </label>
                       </li>
@@ -127,46 +123,51 @@ export default function SmartphoneCatalog() {
         <section className="w-full md:w-3/4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {currentProducts.map((product) => (
-              <div
-                key={product.id}
-                className="relative w-full h-[450px] rounded-[9px] shadow-sm hover:shadow-md transition bg-[#F6F6F6] flex flex-col justify-between p-4"
-              >
-                {/* Wishlist */}
-                <button
-                  className="absolute top-3 right-3"
-                  onClick={() => toggleWishlist(product)}
-                >
-                  <Heart
-                    className={`w-6 h-6 ${
-                      wishlist.some((item) => item.id === product.id)
-                        ? "text-red-500 fill-red-500"
-                        : "text-gray-400"
-                    }`}
+              <Link to={`/products/${product.id}`} key={product.id}>
+                <div className="relative w-full h-[450px] rounded-[9px] shadow-sm hover:shadow-md transition bg-[#F6F6F6] flex flex-col justify-between p-4 cursor-pointer">
+                  {/* Wishlist */}
+                  <button
+                    className="absolute top-3 right-3 z-10"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      toggleWishlist(product);
+                    }}
+                  >
+                    <Heart
+                      className={`w-6 h-6 ${
+                        wishlist.some((item) => item.id === product.id)
+                          ? "text-red-500 fill-red-500"
+                          : "text-gray-400"
+                      }`}
+                    />
+                  </button>
+
+                  <img
+                    src={product.thumbnail}
+                    alt={product.title}
+                    className="w-full h-[200px] object-cover rounded-lg mt-2"
                   />
-                </button>
 
-                <img
-                  src={product.thumbnail}
-                  alt={product.title}
-                  className="w-full h-[200px] object-cover rounded-lg mt-2"
-                />
+                  <div className="text-center mt-4">
+                    <h3 className="text-[17px] font-medium leading-tight">
+                      {product.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm mt-1">{product.brand}</p>
+                    <p className="text-[22px] font-bold mt-3">${product.price}</p>
+                  </div>
 
-                <div className="text-center mt-4">
-                  <h3 className="text-[17px] font-medium leading-tight">
-                    {product.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm mt-1">{product.brand}</p>
-                  <p className="text-[22px] font-bold mt-3">${product.price}</p>
+                  {/* Add to Cart */}
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      addToCart(product);
+                    }}
+                    className="mt-4 w-full h-[45px] bg-black text-white rounded-[8px] hover:bg-gray-800 transition"
+                  >
+                    Buy Now
+                  </button>
                 </div>
-
-                {/* Add to Cart */}
-                <button
-                  onClick={() => addToCart(product)}
-                  className="mt-4 w-full h-[45px] bg-black text-white rounded-[8px] hover:bg-gray-800 transition"
-                >
-                  Buy Now
-                </button>
-              </div>
+              </Link>
             ))}
           </div>
 
