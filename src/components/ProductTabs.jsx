@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
 import { fetchCategoryProducts } from "../api";
+import { useStorage } from "../contexts/StorageContext";
 
 const TABS = [
   { id: 1, label: "Phones", category: "smartphones" },
@@ -12,8 +13,8 @@ const TABS = [
 export default function ProductTabs() {
   const [activeTab, setActiveTab] = useState(TABS[0]);
   const [products, setProducts] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
-  const [cart, setCart] = useState([]);
+
+  const { wishlist, toggleWishlist, addToCart } = useStorage();
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -27,20 +28,11 @@ export default function ProductTabs() {
     loadProducts();
   }, [activeTab]);
 
-  const toggleWishlist = (id) => {
-    setWishlist((prev) =>
-      prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
-    );
-  };
-
-  const addToCart = (product) => {
-    const newCart = [...cart, product];
-    setCart(newCart);
-    localStorage.setItem("cart", JSON.stringify(newCart));
-  };
+  const isInWishlist = (id) => wishlist.some((item) => item.id === id);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
+      {/* Tabs */}
       <div className="flex space-x-6 border-b mb-6">
         {TABS.map((tab) => (
           <button
@@ -56,37 +48,45 @@ export default function ProductTabs() {
           </button>
         ))}
       </div>
+
+      {/* Product Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product) => (
           <div
             key={product.id}
-            className="relative w-[268px] h-[432px] rounded-[9px]  shadow-sm hover:shadow-md transition duration-300 bg-[#F6F6F6]"
+            className="relative w-[268px] h-[432px] rounded-[9px] shadow-sm hover:shadow-md transition duration-300 bg-[#F6F6F6]"
           >
+            {/* Like Button */}
             <button
               className="absolute top-3 right-3"
-              onClick={() => toggleWishlist(product.id)}
+              onClick={() => toggleWishlist(product)}
             >
               <Heart
                 className={`w-6 h-6 ${
-                  wishlist.includes(product.id)
+                  isInWishlist(product.id)
                     ? "text-red-500 fill-red-500"
                     : "text-gray-400"
                 }`}
               />
             </button>
 
+            {/* Product Info */}
             <img
               src={product.thumbnail}
               alt={product.title}
-              className="w-[220px] h-[220px] mx-auto mt-12 "
+              className="w-[220px] h-[220px] mx-auto mt-12"
             />
 
-            <h3 className="text-[18px] leading-[24px] text-center font-medium mt-2">{product.title}</h3>
-            <p className="text-[24px] leading-[24px] text-center mt-4 font-semibold">${product.price}</p>
+            <h3 className="text-[18px] leading-[24px] text-center font-medium mt-2">
+              {product.title}
+            </h3>
+            <p className="text-[24px] leading-[24px] text-center mt-4 font-semibold">
+              ${product.price}
+            </p>
 
             <button
               onClick={() => addToCart(product)}
-              className=" w-[188px] h-[48px] bg-black text-white rounded-[8px] flex justify-center items-center m-auto mt-7"
+              className="w-[188px] h-[48px] bg-black text-white rounded-[8px] flex justify-center items-center m-auto mt-7"
             >
               Buy Now
             </button>

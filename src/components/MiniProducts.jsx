@@ -1,10 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
+import { useStorage } from "../contexts/StorageContext"; // ☝️ context import
 
 const MiniProducts = () => {
   const [products, setProducts] = useState([]);
-  const [wishlist, setWishlist] = useState([]);
+
+  const { wishlist, toggleWishlist, addToCart } = useStorage();
 
   useEffect(() => {
     fetch("https://dummyjson.com/products/search?q=smartphone&limit=4")
@@ -12,11 +14,7 @@ const MiniProducts = () => {
       .then((data) => setProducts(data.products));
   }, []);
 
-  const toggleWishlist = (id) => {
-    setWishlist((prev) =>
-      prev.includes(id) ? prev.filter((pid) => pid !== id) : [...prev, id]
-    );
-  };
+  const isInWishlist = (id) => wishlist.some((item) => item.id === id);
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
@@ -30,11 +28,11 @@ const MiniProducts = () => {
             {/* Like Button */}
             <button
               className="absolute top-3 right-3"
-              onClick={() => toggleWishlist(product.id)}
+              onClick={() => toggleWishlist(product)}
             >
               <Heart
                 className={`w-6 h-6 ${
-                  wishlist.includes(product.id)
+                  isInWishlist(product.id)
                     ? "text-red-500 fill-red-500"
                     : "text-gray-400"
                 }`}
@@ -60,7 +58,10 @@ const MiniProducts = () => {
             </div>
 
             {/* Buy Button */}
-            <button className="mt-6 w-full h-[48px] bg-black text-white rounded-[8px] hover:bg-gray-800 transition">
+            <button
+              onClick={() => addToCart(product)}
+              className="mt-6 w-full h-[48px] bg-black text-white rounded-[8px] hover:bg-gray-800 transition"
+            >
               Buy Now
             </button>
           </div>
