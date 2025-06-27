@@ -1,5 +1,6 @@
 import React from "react";
 import bg from "../assets/images/Banner.png";
+import { Link } from "lucide-react";
 
 const Banner = () => {
   return (
@@ -18,7 +19,9 @@ const Banner = () => {
           Commodo fames vitae vitae leo mauris in. Eu consequat.
         </p>
 
-        <button className="w-[190px] h-[55px] bg-transparent text-white border border-white rounded-[8px]">Shop Now</button>
+        <button className="w-[190px] h-[55px] bg-transparent text-white border border-white rounded-[8px]">
+         Shop Now
+        </button>
 
       </div>
     </div>

@@ -22,7 +22,7 @@ export default function Hero() {
               Created to change everything for the better. For everyone
             </p>
             <button className="mt-6 bg-transparent text-white font-semibold w-[180px] h-[55px] rounded-lg border-2 border-white">
-              <Link>Shop Now</Link>
+              <Link to='/shop'>Shop Now</Link>
             </button>
           </div>
 
@@ -93,7 +93,7 @@ export default function Hero() {
               with a spacious Liquid Retina display.
             </p>
             <button className="mt-6 w-[190px] h-[55px] border rounded-[6px]">
-              <Link>Shop Now</Link>
+              <Link to='/shop'>Shop Now</Link>
             </button>
           </div>
           <img
