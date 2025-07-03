@@ -1,6 +1,11 @@
 "use client";
-import { Link } from "lucide-react";
 import React from "react";
+
+import popular from "../assets/images/popular.png";
+import ipad from "../assets/images/ipad.png";
+import samsung from "../assets/images/samsung.png";
+import macbook from "../assets/images/macboog.png";
+
 
 export default function PromoCards() {
   return (
@@ -10,11 +15,7 @@ export default function PromoCards() {
         style={{ backgroundColor: "#FFFFFF" }}
       >
         <div className="mb-4">
-          <img
-            className="m-auto"
-            src="src/assets/images/popular.png"
-            alt="Popular Products"
-          />
+          <img className="m-auto" src={popular} alt="Popular Products" />
         </div>
         <h3 className="text-[28px] sm:text-[33px] font-[300] leading-[40px] sm:leading-[48px] mb-3 mt-[-30px] sm:mt-[-55px]">
           Popular Products
@@ -28,16 +29,13 @@ export default function PromoCards() {
         </button>
       </div>
 
+      {/* iPad Pro */}
       <div
         className="flex flex-col p-6 w-full sm:w-[360px] h-auto sm:h-[640px]"
         style={{ backgroundColor: "#F9F9F9" }}
       >
         <div className="mb-4">
-          <img
-            className="m-auto"
-            src="src/assets/images/ipad.png"
-            alt="iPad Pro"
-          />
+          <img className="m-auto" src={ipad} alt="iPad Pro" />
         </div>
         <h3 className="text-[28px] sm:text-[33px] font-[300] leading-[40px] sm:leading-[48px] mb-3 mt-4">
           iPad Pro
@@ -51,16 +49,13 @@ export default function PromoCards() {
         </button>
       </div>
 
+      {/* Samsung Galaxy */}
       <div
         className="flex flex-col p-6 w-full sm:w-[360px] h-auto sm:h-[640px]"
         style={{ backgroundColor: "#EAEAEA" }}
       >
         <div className="mb-4">
-          <img
-            className="m-auto"
-            src="src/assets/images/samsung.png"
-            alt="Samsung Galaxy"
-          />
+          <img className="m-auto" src={samsung} alt="Samsung Galaxy" />
         </div>
         <h3 className="text-[28px] sm:text-[33px] font-[300] leading-[40px] sm:leading-[48px] mb-3 mt-4">
           Samsung Galaxy
@@ -74,16 +69,13 @@ export default function PromoCards() {
         </button>
       </div>
 
+      {/* Macbook Pro */}
       <div
         className="flex flex-col p-6 w-full sm:w-[360px] h-auto sm:h-[640px]"
         style={{ backgroundColor: "#2C2C2C" }}
       >
         <div className="mb-4">
-          <img
-            className="m-auto"
-            src="src/assets/images/Macbook 1.png"
-            alt="Macbook Pro"
-          />
+          <img className="m-auto" src={macbook} alt="Macbook Pro" />
         </div>
         <h3 className="text-[28px] sm:text-[33px] font-[300] leading-[40px] sm:leading-[48px] mb-3 text-white">
           Macbook Pro
