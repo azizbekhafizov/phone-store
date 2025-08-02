@@ -53,7 +53,7 @@ export default function ProductTabs() {
           <Link to={`/product/${product.id}`} key={product.id}>
             <div className="relative w-[268px] h-[432px] rounded-[9px] shadow-sm hover:shadow-md transition duration-300 bg-[#F6F6F6] cursor-pointer">
               <button
-                className="absolute top-3 right-3 z-10"
+                className="absolute top-3 right-3 z-10 "
                 onClick={(e) => {
                   e.preventDefault();
                   toggleWishlist(product);

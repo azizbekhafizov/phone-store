@@ -11,7 +11,7 @@ const Banner = () => {
           backgroundImage: `url(${bg})`,
         }}
       >
-        <div className="absolute inset-0 z-0 bg-black lg:bg-black/40" />
+        <div className="absolute inset-0 z-0 bg-black lg:bg-black/40" />x
 
         <div className="relative z-10 text-center max-w-4xl px-4">
           <h1 className="text-4xl md:text-6xl lg:text-6xl xl:text-7xl font-sans text-white mb-4 leading-tight">
