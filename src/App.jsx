@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./layouts/Navbar";
+import Header from "./layouts/Header";
 import Footer from "./layouts/Footer";
 
 import Home from "./pages/Home";
@@ -12,7 +12,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="min-h-screen flex flex-col justify-between">
-        <Navbar />
+        <Header />
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />

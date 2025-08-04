@@ -58,7 +58,7 @@ export default function Cart() {
   const total = subtotal - discount + estimatedTax + shipping;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-3 gap-10">
+    <div className="max-w-7xl mx-auto px-4 py-24 grid grid-cols-1 md:grid-cols-3 gap-10">
       <div className="md:col-span-2">
         <h2 className="text-2xl font-semibold mb-6">Shopping Cart</h2>
         <div className="space-y-6">

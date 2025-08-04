@@ -23,10 +23,10 @@ export default function ProductDetails() {
   const displayImages = Array(4).fill(images[0]);
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="max-w-6xl mx-auto px-4 py-24" >
       <button
         onClick={() => navigate("/shop")}
-        className="mb-6 inline-flex items-center gap-2 text-sm border border-gray-300 hover:border-black hover:bg-gray-100 transition px-4 py-2 rounded-lg text-gray-700"
+        className="mb-6 inline-flex items-center gap-2 text-sm border border-gray-300  hover:bg-gray-100 transition px-4 py-2 rounded-lg text-gray-700"
       >
         <ArrowLeft className="w-4 h-4" />
         Back to Shop

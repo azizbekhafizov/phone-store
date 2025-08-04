@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import { FaSearch, FaHeart, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { useSearch } from "../contexts/SearchContext";
 import { useStorage } from "../contexts/StorageContext";
 
-export default function Navbar() {
-  const { t, i18n } = useTranslation();
+export default function Header() {
   const { setSearchTerm } = useSearch();
   const { wishlist, cart } = useStorage();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const handleLanguageChange = (e) => {
-    i18n.changeLanguage(e.target.value);
-  };
 
   return (
     <header className="w-full shadow-md bg-white text-black fixed top-0 left-0 z-50">
@@ -22,19 +16,19 @@ export default function Navbar() {
           cyber
         </Link>
 
-        <div className="hidden lg:flex items-center border border-gray-300 gap-4 px-4 py-1 rounded-2xl bg-white mx-6 flex-grow max-w-xl">
+        <div className="hidden lg:flex items-center border border-gray-300 gap-4 px-4 py-1 rounded-2xl bg-white mx-6 flex-grow max-w-[375px]">
           <FaSearch className="text-gray-500" />
           <input
             type="text"
-            placeholder={t("search") || "Search"}
+            placeholder="Search"
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="bg-transparent outline-none w-full h-[40px] placeholder-gray-500 text-black"
+            className="bg-transparent outline-none h-[40px] placeholder-gray-500 text-black"
           />
         </div>
         <nav className="hidden lg:flex items-center gap-6 text-base font-medium">
-          <Link to="/" className="">{t("home")}</Link>
-          <Link to="/shop" className="">{t("shop")}</Link>
-          <Link to="/contact" className="">{t("contact")}</Link>
+          <Link to="/" className="">Home</Link>
+          <Link to="/shop" className="">Shop</Link>
+          <Link to="/contact" className="">Contact</Link>
         </nav>
 
         <div className="flex items-center space-x-4 ml-4">
@@ -56,16 +50,6 @@ export default function Navbar() {
             )}
           </Link>
 
-          <select
-            className="cursor-pointer bg-white text-black border border-gray-300 rounded px-2 py-1 text-sm focus:outline-none"
-            value={i18n.language}
-            onChange={handleLanguageChange}
-          >
-            <option value="en">EN</option>
-            <option value="uz">UZ</option>
-            <option value="ru">RU</option>
-          </select>
-
           <button className="lg:hidden ml-2" onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
           </button>
@@ -74,25 +58,25 @@ export default function Navbar() {
 
       {menuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200">
-          <div className="px-4 py-4 space-y-3">
+          <div className="px-4 py-4">
             <div className="flex items-center border border-gray-300 px-3 py-2 rounded-md">
               <FaSearch className="text-gray-500 mr-2" />
               <input
                 type="text"
-                placeholder={t("search") || "Search"}
+                placeholder="Search"
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full bg-transparent outline-none placeholder-gray-500 text-black"
               />
             </div>
 
             <Link to="/" onClick={() => setMenuOpen(false)} className="block text-base ">
-              {t("home")}
+              Home
             </Link>
             <Link to="/shop" onClick={() => setMenuOpen(false)} className="block text-base ">
-              {t("shop")}
+              Shop
             </Link>
             <Link to="/contact" onClick={() => setMenuOpen(false)} className="block text-base ">
-              {t("contact")}
+              Contact
             </Link>
           </div>
         </div>

@@ -49,7 +49,7 @@ export default function SmartphoneCatalog() {
   );
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
+    <div className="max-w-7xl mx-auto px-4 pt-24 mb-6">
       <div className="flex gap-10">
         <aside className="w-1/4 hidden md:block">
           <div className="border-b pb-4 mb-4">
@@ -131,7 +131,7 @@ export default function SmartphoneCatalog() {
             {currentProducts.map((product) => (
                      <Link
             to={`/product/${product.id}`}
-            className="inline-block mt-3 text-sm text-blue-600 underline hover:text-blue-800"
+            className="inline-block mt-3 text-sm text-[#000000]"
           >
                 <div className="relative w-full h-[450px] rounded-[9px] shadow-sm hover:shadow-md transition bg-[#F6F6F6] flex flex-col justify-between p-4 cursor-pointer">
                   {/* Wishlist */}
@@ -154,7 +154,7 @@ export default function SmartphoneCatalog() {
                   <img
                     src={product.thumbnail}
                     alt={product.title}
-                    className="w-full h-[200px] object-cover rounded-lg mt-2"
+                    className="w-full h-[240px] object-contain rounded-lg mt-2"
                   />
 
                   <div className="text-center mt-4">
