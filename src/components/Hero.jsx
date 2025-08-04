@@ -11,9 +11,8 @@ export default function Hero() {
     <div>
       <section className="bg-[#211C24] py-16 px-4">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10">
-          {/* Text Content */}
-          <div className="text-center md:text-left max-w-xl">
-            <h2 className="text-[#909090] font-semibold text-xl md:text-2xl">
+          <div className=" text-center md:text-left max-w-xl">
+            <h2 className=" mt-15 md:mt-1 text-[#909090] font-semibold text-xl md:text-2xl">
               Pro. Beyond.
             </h2>
             <h1 className="font-[100] text-4xl md:text-7xl text-white mt-4 leading-tight tracking-wide">
@@ -29,12 +28,11 @@ export default function Hero() {
             </Link>
           </div>
 
-          {/* Image */}
           <div className="mt-10 md:mt-0">
             <img
               src={heroImg}
               alt="iPhone 14 Pro"
-              className="w-full max-w-[500px] object-contain"
+              className="w-full max-w-[350px] md:max-w-[500px] object-contain relative top-16 "
             />
           </div>
         </div>
@@ -112,7 +110,7 @@ export default function Hero() {
           <img
             src={mac}
             alt="Macbook"
-            className="w-[250px] sm:w-[300px] mt-6 sm:mt-0 object-contain"
+            className="block xs:hidden w-[250px] sm:w-[300px] mt-6 sm:mt-0 object-contain"
           />
         </div>
       </section>

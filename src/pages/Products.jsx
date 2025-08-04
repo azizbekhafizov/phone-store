@@ -48,9 +48,80 @@ export default function SmartphoneCatalog() {
     start + PRODUCTS_PER_PAGE
   );
 
+  const renderBrandFilter = () => (
+    <>
+      <input
+        type="text"
+        placeholder="Search brand..."
+        value={brandSearch}
+        onChange={(e) => setBrandSearch(e.target.value)}
+        className="w-full p-2 mb-3 rounded-md border border-gray-300 focus:outline-none text-sm"
+      />
+      <ul className="space-y-2 max-h-64 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-gray-300 text-sm">
+        <li>
+          <label className="flex items-center space-x-2 cursor-pointer">
+            <input
+              type="radio"
+              name="brand"
+              checked={selectedBrand === "All"}
+              onChange={() => {
+                setSelectedBrand("All");
+                setCurrentPage(1);
+              }}
+            />
+            <span className="flex justify-between w-full">
+              All <span className="text-gray-400">({products.length})</span>
+            </span>
+          </label>
+        </li>
+        {brands
+          .filter((b) =>
+            b.name.toLowerCase().includes(brandSearch.toLowerCase())
+          )
+          .map((brand) => (
+            <li key={brand.name}>
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="brand"
+                  checked={selectedBrand === brand.name}
+                  onChange={() => {
+                    setSelectedBrand(brand.name);
+                    setCurrentPage(1);
+                  }}
+                />
+                <span className="flex justify-between w-full">
+                  {brand.name}
+                  <span className="text-gray-400">({brand.count})</span>
+                </span>
+              </label>
+            </li>
+          ))}
+      </ul>
+    </>
+  );
+
   return (
     <div className="max-w-7xl mx-auto px-4 pt-24 mb-6">
-      <div className="flex gap-10">
+      <div className="flex flex-col md:flex-row gap-10">
+
+        {/* ✅ Mobile filter (accordion) */}
+        <div className="w-full block md:hidden mb-6 border-b pb-4">
+          <div
+            className="flex items-center justify-between cursor-pointer"
+            onClick={() => setBrandOpen(!brandOpen)}
+          >
+            <h3 className="text-[17px] font-semibold">Brand</h3>
+            {brandOpen ? (
+              <ChevronUp className="w-5 h-5 text-gray-500" />
+            ) : (
+              <ChevronDown className="w-5 h-5 text-gray-500" />
+            )}
+          </div>
+          {brandOpen && <div className="mt-3">{renderBrandFilter()}</div>}
+        </div>
+
+        {/* ✅ Desktop sidebar */}
         <aside className="w-1/4 hidden md:block">
           <div className="border-b pb-4 mb-4">
             <div
@@ -64,75 +135,19 @@ export default function SmartphoneCatalog() {
                 <ChevronDown className="w-5 h-5 text-gray-500" />
               )}
             </div>
-
-            {brandOpen && (
-              <div className="mt-3">
-                <input
-                  type="text"
-                  placeholder="Search brand..."
-                  value={brandSearch}
-                  onChange={(e) => setBrandSearch(e.target.value)}
-                  className="w-full p-2 mb-3 rounded-md border border-gray-300 focus:outline-none text-sm"
-                />
-
-                <ul className="space-y-2 max-h-64 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-gray-300 text-sm">
-                  <li>
-                    <label className="flex items-center space-x-2 cursor-pointer">
-                      <input
-                        type="radio"
-                        name="brand"
-                        checked={selectedBrand === "All"}
-                        onChange={() => {
-                          setSelectedBrand("All");
-                          setCurrentPage(1);
-                        }}
-                      />
-                      <span className="flex justify-between w-full">
-                        All{" "}
-                        <span className="text-gray-400">
-                          ({products.length})
-                        </span>
-                      </span>
-                    </label>
-                  </li>
-                  {brands
-                    .filter((b) =>
-                      b.name.toLowerCase().includes(brandSearch.toLowerCase())
-                    )
-                    .map((brand) => (
-                      <li key={brand.name}>
-                        <label className="flex items-center space-x-2 cursor-pointer">
-                          <input
-                            type="radio"
-                            name="brand"
-                            checked={selectedBrand === brand.name}
-                            onChange={() => {
-                              setSelectedBrand(brand.name);
-                              setCurrentPage(1);
-                            }}
-                          />
-                          <span className="flex justify-between w-full">
-                            {brand.name}
-                            <span className="text-gray-400">
-                              ({brand.count})
-                            </span>
-                          </span>
-                        </label>
-                      </li>
-                    ))}
-                </ul>
-              </div>
-            )}
+            {brandOpen && <div className="mt-3">{renderBrandFilter()}</div>}
           </div>
         </aside>
 
+        {/* Product list */}
         <section className="w-full md:w-3/4">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {currentProducts.map((product) => (
-                     <Link
-            to={`/product/${product.id}`}
-            className="inline-block mt-3 text-sm text-[#000000]"
-          >
+              <Link
+                key={product.id}
+                to={`/product/${product.id}`}
+                className="inline-block mt-3 text-sm text-[#000000]"
+              >
                 <div className="relative w-full h-[450px] rounded-[9px] shadow-sm hover:shadow-md transition bg-[#F6F6F6] flex flex-col justify-between p-4 cursor-pointer">
                   {/* Wishlist */}
                   <button
@@ -183,6 +198,7 @@ export default function SmartphoneCatalog() {
             ))}
           </div>
 
+          {/* Pagination */}
           <div className="flex justify-center mt-10 space-x-2">
             {Array.from({ length: totalPages }).map((_, index) => (
               <button

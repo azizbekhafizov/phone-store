@@ -20,7 +20,7 @@ export default function ProductTabs() {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const data = await fetchCategoryProducts(activeTab.category, 8);
+        const data = await fetchCategoryProducts(activeTab.category, 6);
         setProducts(data);
       } catch (err) {
         console.error(err);
@@ -48,7 +48,7 @@ export default function ProductTabs() {
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="flex flex-wrap gap-6 justify-center">
         {products.map((product) => (
           <Link to={`/product/${product.id}`} key={product.id}>
             <div className="relative w-[268px] h-[432px] rounded-[9px] shadow-sm hover:shadow-md transition duration-300 bg-[#F6F6F6] cursor-pointer">
